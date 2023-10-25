@@ -1,5 +1,7 @@
 package Menu;
 
+import Control.*;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,8 +11,14 @@ public class Window extends JPanel implements Runnable {
     private static Window window;
     private State currentState;
     private Scene currentScene;
+    private ML mouse = new ML();
+    private KL key = new KL();
     public Window(int width, int height) {
         setPreferredSize(new Dimension(width,height));
+        addKeyListener(key);
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
+        setFocusable(true);
         isRunning = true;
         changeState(State.MAIN_MENU);
     }
@@ -27,7 +35,7 @@ public class Window extends JPanel implements Runnable {
     public void changeState(State newState){
         currentState = newState;
         switch (currentState){
-            case MAIN_MENU -> currentScene = new MainMenuScene();
+            case MAIN_MENU -> currentScene = new MainMenuScene(mouse);
         }
     }
 

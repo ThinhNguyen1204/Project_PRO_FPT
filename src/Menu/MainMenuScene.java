@@ -1,5 +1,7 @@
 package Menu;
 
+import Control.ML;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,8 +12,10 @@ public class MainMenuScene extends Scene{
     BufferedImage exit,exitPressed,snake, snakePressed, tetris, tetrisPressed,caro,caroPressed;
     BufferedImage currentExit,currentSnake, currentTetris, currentCaro;
     RectImage exitRect, snakeRect, tetrisRect, caroRect;
+    private ML mouse;
 
-    public MainMenuScene(){
+    public MainMenuScene(ML mouse){
+        this.mouse = mouse;
         try{
             exit = ImageIO.read(new File("assets/exit.png"));
             exitPressed = ImageIO.read(new File("assets/exitPressed.png"));
@@ -29,11 +33,46 @@ public class MainMenuScene extends Scene{
         currentSnake = snake;
         currentTetris = tetris;
         exitRect = new RectImage(590,600,100,50);
+        caroRect = new RectImage(226,100,300,150);
+        snakeRect = new RectImage(752,100,300,150);
+        tetrisRect = new RectImage(226,350,300,150);
     }
 
     @Override
     public void update() {
+        if(mouse.x >= caroRect.x && mouse.x <= caroRect.x+caroRect.width
+        && mouse.y>= caroRect.y && mouse.y <= caroRect.y + caroRect.height ){
+            currentCaro = caroPressed;
+            
+        }else {
+            currentCaro = caro;
+        }
 
+        if(mouse.x >= snakeRect.x && mouse.x <= snakeRect.x+snakeRect.width
+                && mouse.y>= snakeRect.y && mouse.y <= snakeRect.y + snakeRect.height ){
+            currentSnake = snakePressed;
+
+        }else {
+            currentSnake = snake;
+        }
+
+        if(mouse.x >= tetrisRect.x && mouse.x <= tetrisRect.x+tetrisRect.width
+                && mouse.y>= tetrisRect.y && mouse.y <= tetrisRect.y + tetrisRect.height ){
+            currentTetris = tetrisPressed;
+
+        }else {
+            currentTetris = tetris;
+        }
+
+        if(mouse.x >= exitRect.x && mouse.x <= exitRect.x+exitRect.width
+                && mouse.y>= exitRect.y && mouse.y <= exitRect.y + exitRect.height ){
+            currentExit = exitPressed;
+
+        }else {
+            currentExit = exit;
+        }
+        
+        
     }
 
     @Override
