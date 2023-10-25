@@ -67,7 +67,7 @@ public class MainMenuScene extends Scene{
         if(mouse.x >= exitRect.x && mouse.x <= exitRect.x+exitRect.width
                 && mouse.y>= exitRect.y && mouse.y <= exitRect.y + exitRect.height ){
             currentExit = exitPressed;
-
+            if(mouse.isPressed) Window.getWindow().close();
         }else {
             currentExit = exit;
         }

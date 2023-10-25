@@ -44,6 +44,10 @@ public class Window extends JPanel implements Runnable {
         thread.start();
     }
 
+    public void close(){
+        isRunning = false;
+    }
+
     @Override
     public void run() {
         double drawInterval = 1000000000/FPS;
