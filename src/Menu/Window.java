@@ -65,8 +65,6 @@ public class Window extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.GRAY);
-        g.fillRect(0,0,Constant.MAIN_MENU_WIDTH,Constant.MAIN_MENU_HEIGHT);
-
+        currentScene.draw(g);
     }
 }
