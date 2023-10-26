@@ -1,4 +1,4 @@
-package Menu;
+package Game.Menu;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package Control;
+package Game.Control;
 
 import java.awt.event.KeyAdapter;
 

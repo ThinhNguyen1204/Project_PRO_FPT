@@ -1,4 +1,4 @@
-package Menu;
+package Game.Menu;
 
 public enum State {
     MAIN_MENU, SNAKE_MENU, TETRIS_MENU, CARO_MENU, SNAKE_GAME, TETRIS_GAME, CARO_GAME

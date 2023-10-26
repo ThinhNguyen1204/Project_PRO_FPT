@@ -1,4 +1,4 @@
-package Menu;
+package Game.Menu;
 
 public class RectImage {
     public double x,y;

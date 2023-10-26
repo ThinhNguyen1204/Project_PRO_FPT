@@ -1,6 +1,6 @@
-package Menu;
+package Game.Menu;
 
-import Control.ML;
+import Game.Control.ML;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

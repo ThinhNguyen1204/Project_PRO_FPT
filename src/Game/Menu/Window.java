@@ -1,13 +1,12 @@
-package Menu;
+package Game.Menu;
 
-import Control.*;
-import SnakeGame.SnakeMenu;
+import Game.Control.*;
+import Game.SnakeGame.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JPanel implements Runnable {
-    //private int panelWidth,panelHeight;
     private boolean isRunning;
     private int FPS = 60;
     private static Window window;
@@ -44,6 +43,9 @@ public class Window extends JPanel implements Runnable {
                 setPreferredSize(new Dimension(Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT));
                 Main.frame.pack();
                 Main.frame.setLocationRelativeTo(null);
+            }
+            case SNAKE_GAME -> {
+                currentScene = new SnakeGame(key);
             }
         }
     }

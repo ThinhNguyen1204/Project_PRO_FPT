@@ -1,7 +1,11 @@
-package SnakeGame;
+package Game.SnakeGame;
 
-import Control.*;
-import Menu.*;
+import Game.Control.ML;
+import Game.Menu.Constant;
+import Game.Menu.RectImage;
+import Game.Menu.Scene;
+import Game.Menu.State;
+import Game.Menu.Window;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -38,7 +42,7 @@ public class SnakeMenu extends Scene {
         && mouse.y >= playRect.y && mouse.y <= playRect.y + playRect.height){
             currentPlay = playPressed;
             if(mouse.isPressed){
-                
+                Window.getWindow().changeState(State.SNAKE_GAME);
             }
         }else {
             currentPlay = play;
@@ -58,7 +62,7 @@ public class SnakeMenu extends Scene {
     @Override
     public void draw(Graphics g) {
         g.setColor(new Color(5, 84, 15));
-        g.fillRect(0,0,Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT);
+        g.fillRect(0,0, Constant.SNAKE_MENU_WIDTH, Constant.SNAKE_MENU_HEIGHT);
         g.drawImage(title,200,20,400,200,null);
         g.drawImage(currentPlay,300,240,200,100,null);
         g.drawImage(currentExit,325,360,150,75,null);
