@@ -7,6 +7,7 @@ import Game.Menu.Scene;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -15,6 +16,8 @@ public class SnakeGame extends Scene {
     private RectImage foreGround;
     private BufferedImage background,backgroundLeft,backgroundRight;
     private BufferedImage backgroundShadowDown,backgroundShadowLeft,backgroundShadowRight,backgroundShadowUp;
+    private Snake snake;
+    private Food food;
     public SnakeGame(KL key) {
         this.key = key;
         foreGround = new RectImage(Constant.SNAKE_FOREGROUND_X,Constant.SNAKE_FOREGROUND_Y, Constant.SNAKE_FOREGROUND_WIDTH, Constant.SNAKE_FOREGROUND_HEIGHT);
@@ -29,11 +32,24 @@ public class SnakeGame extends Scene {
         }catch (Exception e){
             e.printStackTrace();
         }
+        snake = new Snake(6,Constant.SNAKE_FOREGROUND_WIDTH/2,Constant.SNAKE_FOREGROUND_HEIGHT/2);
+        food = new Food(snake);
+        food.newFood();
     }
 
     @Override
     public void update() {
-
+        if(key.isKeyPressed(KeyEvent.VK_W)){
+            snake.changeSnakeDirection(SnakeDirection.UP);
+        } else if (key.isKeyPressed(KeyEvent.VK_S)) {
+            snake.changeSnakeDirection(SnakeDirection.DOWN);
+        }else if (key.isKeyPressed(KeyEvent.VK_D)) {
+            snake.changeSnakeDirection(SnakeDirection.RIGHT);
+        }else if (key.isKeyPressed(KeyEvent.VK_A)) {
+            snake.changeSnakeDirection(SnakeDirection.LEFT);
+        }
+        snake.update();
+        food.update();
     }
 
     @Override
@@ -46,19 +62,19 @@ public class SnakeGame extends Scene {
                         Constant.SNAKE_CELL_SIZE,Constant.SNAKE_CELL_SIZE,null);
             }
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < Constant.MAIN_MENU_WIDTH / Constant.SNAKE_CELL_SIZE; j++) {
                 g.drawImage(background,j*Constant.SNAKE_CELL_SIZE,Constant.SNAKE_MENU_HEIGHT-20-i*Constant.SNAKE_CELL_SIZE,
                         Constant.SNAKE_CELL_SIZE,Constant.SNAKE_CELL_SIZE,null);
             }
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < Constant.SNAKE_ROWS+2; j++) {
                 g.drawImage(backgroundLeft,i*Constant.SNAKE_CELL_SIZE,80+j*Constant.SNAKE_CELL_SIZE,
                         Constant.SNAKE_CELL_SIZE,Constant.SNAKE_CELL_SIZE,null);
             }
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < Constant.SNAKE_ROWS+2; j++) {
                 g.drawImage(backgroundRight,780-i*Constant.SNAKE_CELL_SIZE,80+j*Constant.SNAKE_CELL_SIZE,
                         Constant.SNAKE_CELL_SIZE,Constant.SNAKE_CELL_SIZE,null);
@@ -101,5 +117,7 @@ public class SnakeGame extends Scene {
             g.drawImage(backgroundShadowLeft,Constant.SNAKE_FOREGROUND_X+Constant.SNAKE_FOREGROUND_WIDTH,
                     Constant.SNAKE_FOREGROUND_Y+i*Constant.SNAKE_CELL_SIZE,Constant.SNAKE_CELL_SIZE,Constant.SNAKE_CELL_SIZE,null);
         }
+        snake.draw(g);
+        food.draw(g);
     }
 }

@@ -37,8 +37,15 @@ public class Window extends JPanel implements Runnable {
     public void changeState(State newState){
         currentState = newState;
         switch (currentState){
-            case MAIN_MENU -> currentScene = new MainMenuScene(mouse);
+            case MAIN_MENU -> {
+                FPS =60;
+                currentScene = new MainMenuScene(mouse);
+                setPreferredSize(new Dimension(Constant.MAIN_MENU_WIDTH,Constant.MAIN_MENU_HEIGHT));
+                Main.frame.pack();
+                Main.frame.setLocationRelativeTo(null);
+            }
             case SNAKE_MENU -> {
+                FPS = 15;
                 currentScene = new SnakeMenu(mouse);
                 setPreferredSize(new Dimension(Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT));
                 Main.frame.pack();
@@ -46,6 +53,9 @@ public class Window extends JPanel implements Runnable {
             }
             case SNAKE_GAME -> {
                 currentScene = new SnakeGame(key);
+            }
+            case SNAKE_GAME_OVER -> {
+                currentScene = new SnakeOver(mouse);
             }
         }
     }
@@ -67,6 +77,7 @@ public class Window extends JPanel implements Runnable {
         long currentTime;
         try{
             while (isRunning){
+                drawInterval = 1000000000/FPS;
                 currentTime =System.nanoTime();
                 deltaTime += (currentTime-lastTime) /drawInterval;
                 lastTime = currentTime;
