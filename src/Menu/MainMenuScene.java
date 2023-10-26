@@ -9,9 +9,9 @@ import java.io.File;
 
 public class MainMenuScene extends Scene{
 
-    BufferedImage exit,exitPressed,snake, snakePressed, tetris, tetrisPressed,caro,caroPressed;
-    BufferedImage currentExit,currentSnake, currentTetris, currentCaro;
-    RectImage exitRect, snakeRect, tetrisRect, caroRect;
+    private BufferedImage exit,exitPressed,snake, snakePressed, tetris, tetrisPressed,caro,caroPressed;
+    private BufferedImage currentExit,currentSnake, currentTetris, currentCaro;
+    private RectImage exitRect, snakeRect, tetrisRect, caroRect;
     private ML mouse;
 
     public MainMenuScene(ML mouse){
@@ -51,7 +51,9 @@ public class MainMenuScene extends Scene{
         if(mouse.x >= snakeRect.x && mouse.x <= snakeRect.x+snakeRect.width
                 && mouse.y>= snakeRect.y && mouse.y <= snakeRect.y + snakeRect.height ){
             currentSnake = snakePressed;
-
+            if(mouse.isPressed){
+                Window.getWindow().changeState(State.SNAKE_MENU);
+            }
         }else {
             currentSnake = snake;
         }
