@@ -16,6 +16,12 @@ public class Constant {
     public static final int TETRIS_MENU_HEIGHT = 720;
     public static final int TETRIS_BOARD_WIDTH = 360;
     public static final int TETRIS_BOARD_HEIGHT = 600;
+    public static final int TETRIS_BOARD_X = TETRIS_MENU_WIDTH/2 - TETRIS_BOARD_WIDTH/2;
+    public static final int TETRIS_BOARD_Y = 50;
+
+    public static final int TETRIS_BOARD2_X = TETRIS_BOARD_X+TETRIS_BOARD_WIDTH+50;
+    public static final int TETRIS_BOARD2_Y = TETRIS_BOARD_Y;
+    public static final int TETRIS_BOARD2_SIZE = TETRIS_BOARD_WIDTH/2;
 
     public static final int TETRIS_CELL_SIZE = 30;
 

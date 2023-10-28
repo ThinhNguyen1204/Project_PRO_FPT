@@ -1,7 +1,11 @@
 package Game.Menu;
 
-import Game.Control.*;
-import Game.SnakeGame.*;
+import Game.Control.KL;
+import Game.Control.ML;
+import Game.SnakeGame.SnakeGame;
+import Game.SnakeGame.SnakeMenu;
+import Game.SnakeGame.SnakeOver;
+import Game.TetrisGame.TetrisGame;
 import Game.TetrisGame.TetrisMenu;
 
 import javax.swing.*;
@@ -63,9 +67,9 @@ public class Window extends JPanel implements Runnable {
                 Main.frame.pack();
                 Main.frame.setLocationRelativeTo(null);
             }
-//            case TETRIS_GAME -> {
-//                currentScene = new TetrisGame(key);
-//            }
+            case TETRIS_GAME -> {
+                currentScene = new TetrisGame();
+            }
         }
     }
 
