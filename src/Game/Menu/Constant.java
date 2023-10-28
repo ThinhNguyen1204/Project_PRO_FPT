@@ -12,6 +12,14 @@ public class Constant {
     public static final int SNAKE_CELL_SIZE = 20;
     public static final int SNAKE_ROWS = SNAKE_FOREGROUND_HEIGHT/SNAKE_CELL_SIZE;
     public static final int SNAKE_COLS = SNAKE_FOREGROUND_WIDTH/SNAKE_CELL_SIZE;
+    public static final int TETRIS_MENU_WIDTH = 1280;
+    public static final int TETRIS_MENU_HEIGHT = 720;
+    public static final int TETRIS_BOARD_WIDTH = 360;
+    public static final int TETRIS_BOARD_HEIGHT = 600;
+
+    public static final int TETRIS_CELL_SIZE = 30;
+
+
 
 
 

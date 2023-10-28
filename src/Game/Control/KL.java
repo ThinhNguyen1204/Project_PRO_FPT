@@ -4,18 +4,23 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KL extends KeyAdapter {
-    private boolean[] keyPressed = new boolean[120];
+    public boolean up, left,down,right;
 
     @Override
     public void keyPressed(KeyEvent keyEvent){
-        keyPressed[keyEvent.getKeyCode()]=true;
-    }
-    @Override
-    public void keyReleased(KeyEvent keyEvent){
-        keyPressed[keyEvent.getKeyCode()]=false;
+        int code = keyEvent.getKeyCode();
+        if(code == KeyEvent.VK_W){
+            up=true;
+        }
+        if(code == KeyEvent.VK_S){
+            down=true;
+        }
+        if(code == KeyEvent.VK_A){
+            left=true;
+        }
+        if(code == KeyEvent.VK_D){
+            right=true;
+        }
     }
 
-    public boolean isKeyPressed(int keycode){
-        return keyPressed[keycode];
-    }
 }

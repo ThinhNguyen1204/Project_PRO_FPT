@@ -2,6 +2,7 @@ package Game.Menu;
 
 import Game.Control.*;
 import Game.SnakeGame.*;
+import Game.TetrisGame.TetrisMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,14 +39,13 @@ public class Window extends JPanel implements Runnable {
         currentState = newState;
         switch (currentState){
             case MAIN_MENU -> {
-                FPS =60;
                 currentScene = new MainMenuScene(mouse);
                 setPreferredSize(new Dimension(Constant.MAIN_MENU_WIDTH,Constant.MAIN_MENU_HEIGHT));
                 Main.frame.pack();
                 Main.frame.setLocationRelativeTo(null);
             }
             case SNAKE_MENU -> {
-                FPS = 15;
+                FPS = 12;
                 currentScene = new SnakeMenu(mouse);
                 setPreferredSize(new Dimension(Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT));
                 Main.frame.pack();
@@ -57,6 +57,15 @@ public class Window extends JPanel implements Runnable {
             case SNAKE_GAME_OVER -> {
                 currentScene = new SnakeOver(mouse);
             }
+            case TETRIS_MENU -> {
+                currentScene = new TetrisMenu(mouse);
+                setPreferredSize(new Dimension(Constant.TETRIS_MENU_WIDTH,Constant.TETRIS_MENU_HEIGHT));
+                Main.frame.pack();
+                Main.frame.setLocationRelativeTo(null);
+            }
+//            case TETRIS_GAME -> {
+//                currentScene = new TetrisGame(key);
+//            }
         }
     }
 

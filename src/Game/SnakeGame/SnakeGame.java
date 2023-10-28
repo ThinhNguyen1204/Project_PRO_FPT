@@ -7,7 +7,6 @@ import Game.Menu.Scene;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -39,13 +38,17 @@ public class SnakeGame extends Scene {
 
     @Override
     public void update() {
-        if(key.isKeyPressed(KeyEvent.VK_W)){
+        if(key.up){
+            key.up=false;
             snake.changeSnakeDirection(SnakeDirection.UP);
-        } else if (key.isKeyPressed(KeyEvent.VK_S)) {
+        } else if (key.down) {
+            key.down = false;
             snake.changeSnakeDirection(SnakeDirection.DOWN);
-        }else if (key.isKeyPressed(KeyEvent.VK_D)) {
+        }else if (key.right) {
+            key.right = false;
             snake.changeSnakeDirection(SnakeDirection.RIGHT);
-        }else if (key.isKeyPressed(KeyEvent.VK_A)) {
+        }else if (key.left) {
+            key.left = false;
             snake.changeSnakeDirection(SnakeDirection.LEFT);
         }
         snake.update();

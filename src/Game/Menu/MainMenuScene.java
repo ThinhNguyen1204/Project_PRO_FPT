@@ -61,7 +61,9 @@ public class MainMenuScene extends Scene{
         if(mouse.x >= tetrisRect.x && mouse.x <= tetrisRect.x+tetrisRect.width
                 && mouse.y>= tetrisRect.y && mouse.y <= tetrisRect.y + tetrisRect.height ){
             currentTetris = tetrisPressed;
-
+            if(mouse.isPressed){
+                Window.getWindow().changeState(State.TETRIS_MENU);
+            }
         }else {
             currentTetris = tetris;
         }
