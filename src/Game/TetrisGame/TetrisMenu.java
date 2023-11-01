@@ -17,6 +17,7 @@ public class TetrisMenu extends Scene {
     private RectImage playRect, exitRect;
 
 
+
     public TetrisMenu(ML mouse) {
         this.mouse = mouse;
         try{

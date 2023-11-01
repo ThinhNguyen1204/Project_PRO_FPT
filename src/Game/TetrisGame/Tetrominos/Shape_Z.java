@@ -39,7 +39,7 @@ public class Shape_Z extends Shape{
         tmpBlocks[2].y = blocks[0].y + Constant.TETRIS_CELL_SIZE;
         tmpBlocks[3].x = blocks[0].x + Constant.TETRIS_CELL_SIZE;
         tmpBlocks[3].y = blocks[0].y - Constant.TETRIS_CELL_SIZE;
-        //updateXY(1);
+        updateXY(1);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class Shape_Z extends Shape{
         tmpBlocks[2].y = blocks[0].y + Constant.TETRIS_CELL_SIZE;
         tmpBlocks[3].x = blocks[0].x + Constant.TETRIS_CELL_SIZE;
         tmpBlocks[3].y = blocks[0].y + Constant.TETRIS_CELL_SIZE;
-        //updateXY(2);
+        updateXY(2);
     }
 
     @Override

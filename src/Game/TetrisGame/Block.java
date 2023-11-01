@@ -14,6 +14,6 @@ public class Block {
 
     public void draw(Graphics g){
         g.setColor(color);
-        g.fillRect(x,y, Constant.TETRIS_CELL_SIZE,Constant.TETRIS_CELL_SIZE);
+        g.fillRect(x,y, Constant.TETRIS_CELL_SIZE-4,Constant.TETRIS_CELL_SIZE-4);
     }
 }

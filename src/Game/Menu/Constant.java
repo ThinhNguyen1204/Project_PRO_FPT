@@ -24,6 +24,7 @@ public class Constant {
     public static final int TETRIS_BOARD2_SIZE = TETRIS_BOARD_WIDTH/2;
 
     public static final int TETRIS_CELL_SIZE = 30;
+    public static final int TETRIS_COLS = TETRIS_BOARD_WIDTH/TETRIS_CELL_SIZE;
 
 
 

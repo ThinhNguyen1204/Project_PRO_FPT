@@ -68,7 +68,7 @@ public class Window extends JPanel implements Runnable {
                 Main.frame.setLocationRelativeTo(null);
             }
             case TETRIS_GAME -> {
-                currentScene = new TetrisGame();
+                currentScene = new TetrisGame(key);
             }
         }
     }
