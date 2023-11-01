@@ -3,6 +3,8 @@ package Game.TetrisGame;
 import Game.Control.KL;
 import Game.Menu.Constant;
 import Game.Menu.Scene;
+import Game.Menu.State;
+import Game.Menu.Window;
 import Game.TetrisGame.Tetrominos.*;
 
 import java.awt.*;
@@ -16,11 +18,13 @@ public class TetrisGame extends Scene {
     private int startX2 = Constant.TETRIS_BOARD2_X + Constant.TETRIS_BOARD2_SIZE/2 - Constant.TETRIS_CELL_SIZE;
     private int startY2 = Constant.TETRIS_BOARD2_Y + 2*Constant.TETRIS_CELL_SIZE;
     private Shape currentShape, nextShape;
-    public static ArrayList<Block>  listBlock = new ArrayList<>();
-    public static int score = 0;
+    public static ArrayList<Block>  listBlock;
+    public static int score;
 
     public TetrisGame(KL key) {
         this.key = key;
+        listBlock = new ArrayList<>();
+        score = 0;
         currentShape = randomShape();
         currentShape.setXY(startX, startY);
         nextShape = randomShape();
@@ -74,6 +78,7 @@ public class TetrisGame extends Scene {
             currentShape.setXY(startX, startY);
             nextShape = randomShape();
             nextShape.setXY(startX2,startY2);
+            checkLose(currentShape);
         }
     }
 
@@ -96,6 +101,16 @@ public class TetrisGame extends Scene {
             }
             deleteY+=Constant.TETRIS_CELL_SIZE;
             blockCount=0;
+        }
+    }
+
+    public void checkLose(Shape currentShape){
+        for(Block block : currentShape.blocks){
+            for (Block blockList : listBlock){
+                if(block.x == blockList.x && block.y == blockList.y){
+                    Window.getWindow().changeState(State.TETRIS_GAME_OVER);
+                }
+            }
         }
     }
     @Override

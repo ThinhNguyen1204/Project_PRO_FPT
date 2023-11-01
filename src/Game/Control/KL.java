@@ -4,7 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KL extends KeyAdapter {
-    public boolean up, left,down,right;
+    public boolean up, left,down,right,enter;
 
     @Override
     public void keyPressed(KeyEvent keyEvent){
@@ -20,6 +20,9 @@ public class KL extends KeyAdapter {
         }
         if(code == KeyEvent.VK_D){
             right=true;
+        }
+        if(code == KeyEvent.VK_ENTER){
+            enter=true;
         }
     }
 

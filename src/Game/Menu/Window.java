@@ -7,6 +7,7 @@ import Game.SnakeGame.SnakeMenu;
 import Game.SnakeGame.SnakeOver;
 import Game.TetrisGame.TetrisGame;
 import Game.TetrisGame.TetrisMenu;
+import Game.TetrisGame.TetrisOver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,6 +70,9 @@ public class Window extends JPanel implements Runnable {
             }
             case TETRIS_GAME -> {
                 currentScene = new TetrisGame(key);
+            }
+            case TETRIS_GAME_OVER -> {
+                currentScene = new TetrisOver(key);
             }
         }
     }

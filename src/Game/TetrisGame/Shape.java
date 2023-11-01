@@ -80,7 +80,7 @@ public class Shape {
 
     public void deactivating(){
         deactivateCount++;
-        if(deactivateCount==25){
+        if(deactivateCount==15){
             deactivateCount = 0;
             checkMovementCollision();
             if(bottomCollision){
