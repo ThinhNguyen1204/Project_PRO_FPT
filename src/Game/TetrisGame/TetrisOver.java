@@ -14,9 +14,10 @@ import java.io.File;
 public class TetrisOver extends Scene {
     private KL key;
     private BufferedImage pointer;
-    private int pointerDirection = 1;
+    private int pointerDirection;
     public TetrisOver(KL key) {
         this.key = key;
+        pointerDirection = 1;
         try{
             pointer = ImageIO.read(new File("assets/choose.png"));
         }catch(Exception e){

@@ -25,6 +25,17 @@ public class Constant {
 
     public static final int TETRIS_CELL_SIZE = 30;
     public static final int TETRIS_COLS = TETRIS_BOARD_WIDTH/TETRIS_CELL_SIZE;
+    public static final int PONG_MENU_WIDTH = 1000;
+    public static final int PONG_MENU_HEIGHT = 600;
+    public static final int PONG_BALL_SIZE = 20;
+    public static final int PONG_PADDLE_WIDTH = PONG_BALL_SIZE*8;
+    public static final int PONG_PLAYER_PADDLE_START_X = 420;
+    public static final int PONG_PLAYER_PADDLE_START_Y = 560;
+    public static final int PONG_AI_PADDLE_START_X = 420;
+    public static final int PONG_AI_PADDLE_START_Y = 20;
+
+
+
 
 
 

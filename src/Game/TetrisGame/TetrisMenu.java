@@ -49,7 +49,7 @@ public class TetrisMenu extends Scene {
         if(mouse.x>=exitRect.x && mouse.x<=exitRect.x+exitRect.width && mouse.y >= exitRect.y && mouse.y <= exitRect.y + exitRect.height){
             currentExit = exitPressed;
             if(mouse.isPressed){
-                Window.getWindow().close();
+                Window.getWindow().changeState(State.MAIN_MENU);
             }
         }else {
             currentExit = exit;

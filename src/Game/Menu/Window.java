@@ -2,6 +2,9 @@ package Game.Menu;
 
 import Game.Control.KL;
 import Game.Control.ML;
+import Game.PongGame.PongGame;
+import Game.PongGame.PongMenu;
+import Game.PongGame.PongOver;
 import Game.SnakeGame.SnakeGame;
 import Game.SnakeGame.SnakeMenu;
 import Game.SnakeGame.SnakeOver;
@@ -44,15 +47,18 @@ public class Window extends JPanel implements Runnable {
         currentState = newState;
         switch (currentState){
             case MAIN_MENU -> {
+                FPS =60;
                 currentScene = new MainMenuScene(mouse);
-                setPreferredSize(new Dimension(Constant.MAIN_MENU_WIDTH,Constant.MAIN_MENU_HEIGHT));
+                this.setPreferredSize(new Dimension(Constant.MAIN_MENU_WIDTH,Constant.MAIN_MENU_HEIGHT));
                 Main.frame.pack();
                 Main.frame.setLocationRelativeTo(null);
             }
             case SNAKE_MENU -> {
                 FPS = 12;
                 currentScene = new SnakeMenu(mouse);
-                setPreferredSize(new Dimension(Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT));
+                Main.frame.setSize(Constant.MAIN_MENU_WIDTH, Constant.MAIN_MENU_HEIGHT);
+                this.setPreferredSize(new Dimension(Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT));
+                this.revalidate();
                 Main.frame.pack();
                 Main.frame.setLocationRelativeTo(null);
             }
@@ -60,11 +66,14 @@ public class Window extends JPanel implements Runnable {
                 currentScene = new SnakeGame(key);
             }
             case SNAKE_GAME_OVER -> {
+                currentScene=null;
                 currentScene = new SnakeOver(mouse);
             }
             case TETRIS_MENU -> {
                 currentScene = new TetrisMenu(mouse);
-                setPreferredSize(new Dimension(Constant.TETRIS_MENU_WIDTH,Constant.TETRIS_MENU_HEIGHT));
+                Main.frame.setSize(Constant.MAIN_MENU_WIDTH, Constant.MAIN_MENU_HEIGHT);
+                this.setPreferredSize(new Dimension(Constant.TETRIS_MENU_WIDTH,Constant.TETRIS_MENU_HEIGHT));
+                this.revalidate();
                 Main.frame.pack();
                 Main.frame.setLocationRelativeTo(null);
             }
@@ -74,7 +83,22 @@ public class Window extends JPanel implements Runnable {
             case TETRIS_GAME_OVER -> {
                 currentScene = new TetrisOver(key);
             }
+            case PONG_MENU -> {
+                currentScene = new PongMenu(key);
+                Main.frame.setSize(Constant.MAIN_MENU_WIDTH, Constant.MAIN_MENU_HEIGHT);
+                this.setPreferredSize(new Dimension(Constant.PONG_MENU_WIDTH, Constant.PONG_MENU_HEIGHT));
+                this.revalidate();
+                Main.frame.pack();
+                Main.frame.setLocationRelativeTo(null);
+            }
+            case PONG_GAME -> {
+                currentScene = new PongGame(key);
+            }
+            case PONG_GAME_OVER -> {
+                currentScene = new PongOver(key);
+            }
         }
+
     }
 
     public void start(){

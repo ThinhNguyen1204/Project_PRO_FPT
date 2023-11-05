@@ -48,6 +48,7 @@ public class SnakeOver extends Scene {
                 && mouse.y >= exitRect.y && mouse.y <= exitRect.y + exitRect.height){
             currentExit = exitPressed;
             if(mouse.isPressed){
+                mouse.isPressed=false;
                 Window.getWindow().changeState(State.MAIN_MENU);
             }
         }else {

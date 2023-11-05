@@ -9,9 +9,9 @@ import java.io.File;
 
 public class MainMenuScene extends Scene{
 
-    private BufferedImage exit,exitPressed,snake, snakePressed, tetris, tetrisPressed,caro,caroPressed;
-    private BufferedImage currentExit,currentSnake, currentTetris, currentCaro;
-    private RectImage exitRect, snakeRect, tetrisRect, caroRect;
+    private BufferedImage exit,exitPressed,snake, snakePressed, tetris, tetrisPressed,caro,caroPressed,pong,pongPressed;
+    private BufferedImage currentExit,currentSnake, currentTetris, currentCaro, currentPong;
+    private RectImage exitRect, snakeRect, tetrisRect, caroRect, pongRect;
     private ML mouse;
 
     public MainMenuScene(ML mouse){
@@ -25,6 +25,8 @@ public class MainMenuScene extends Scene{
             tetrisPressed = ImageIO.read(new File("assets/tetrisPressed.png"));
             caro = ImageIO.read(new File("assets/caro.png"));
             caroPressed = ImageIO.read(new File("assets/caroPressed.png"));
+            pong = ImageIO.read(new File("assets/Pong.png"));
+            pongPressed = ImageIO.read(new File("assets/pongPressed.png"));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -32,10 +34,12 @@ public class MainMenuScene extends Scene{
         currentExit = exit;
         currentSnake = snake;
         currentTetris = tetris;
+        currentPong = pong;
         exitRect = new RectImage(590,600,100,50);
         caroRect = new RectImage(226,100,300,150);
         snakeRect = new RectImage(752,100,300,150);
         tetrisRect = new RectImage(226,350,300,150);
+        pongRect = new RectImage(752,350, 300, 150);
     }
 
     @Override
@@ -68,6 +72,16 @@ public class MainMenuScene extends Scene{
             currentTetris = tetris;
         }
 
+        if(mouse.x >= pongRect.x && mouse.x <= pongRect.x+pongRect.width
+                && mouse.y>= pongRect.y && mouse.y <= pongRect.y + pongRect.height ){
+            currentPong = pongPressed;
+            if(mouse.isPressed){
+                Window.getWindow().changeState(State.PONG_MENU);
+            }
+        }else {
+            currentPong = pong;
+        }
+
         if(mouse.x >= exitRect.x && mouse.x <= exitRect.x+exitRect.width
                 && mouse.y>= exitRect.y && mouse.y <= exitRect.y + exitRect.height ){
             currentExit = exitPressed;
@@ -75,6 +89,7 @@ public class MainMenuScene extends Scene{
         }else {
             currentExit = exit;
         }
+        
         
         
     }
@@ -87,5 +102,6 @@ public class MainMenuScene extends Scene{
         g.drawImage(currentCaro,226,100,300,150,null);
         g.drawImage(currentSnake,752,100,300,150,null);
         g.drawImage(currentTetris,226,350,300,150,null);
+        g.drawImage(currentPong, 752,350, 300, 150, null);
     }
 }

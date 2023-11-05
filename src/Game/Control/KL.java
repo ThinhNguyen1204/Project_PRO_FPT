@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 
 public class KL extends KeyAdapter {
     public boolean up, left,down,right,enter;
+    private boolean[] keyPressed = new boolean[120];
 
     @Override
     public void keyPressed(KeyEvent keyEvent){
         int code = keyEvent.getKeyCode();
+        keyPressed[code]=true;
         if(code == KeyEvent.VK_W){
             up=true;
         }
@@ -24,6 +26,14 @@ public class KL extends KeyAdapter {
         if(code == KeyEvent.VK_ENTER){
             enter=true;
         }
+    }
+
+    public void keyReleased(KeyEvent keyEvent){
+        keyPressed[keyEvent.getKeyCode()]=false;
+    }
+
+    public boolean isKeyPressed(int keycode){
+        return keyPressed[keycode];
     }
 
 }
