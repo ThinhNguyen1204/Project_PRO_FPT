@@ -33,7 +33,10 @@ public class Constant {
     public static final int PONG_PLAYER_PADDLE_START_Y = 560;
     public static final int PONG_AI_PADDLE_START_X = 420;
     public static final int PONG_AI_PADDLE_START_Y = 20;
-
+    public static final int CARO_MENU_SIZE = 600;
+    public static final int CARO_BOARD_SIZE = 500;
+    public static final int CARO_CELL_SIZE = 20;
+    public static final int CARO_BLOCKS = CARO_BOARD_SIZE/CARO_CELL_SIZE;
 
 
 

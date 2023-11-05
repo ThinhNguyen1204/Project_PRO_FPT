@@ -47,7 +47,9 @@ public class MainMenuScene extends Scene{
         if(mouse.x >= caroRect.x && mouse.x <= caroRect.x+caroRect.width
         && mouse.y>= caroRect.y && mouse.y <= caroRect.y + caroRect.height ){
             currentCaro = caroPressed;
-            
+            if(mouse.isPressed){
+                Window.getWindow().changeState(State.CARO_MENU);
+            }
         }else {
             currentCaro = caro;
         }

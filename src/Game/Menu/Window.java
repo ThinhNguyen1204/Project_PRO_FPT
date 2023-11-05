@@ -1,5 +1,8 @@
 package Game.Menu;
 
+import Game.Caro.CaroEnd;
+import Game.Caro.CaroGame;
+import Game.Caro.CaroMenu;
 import Game.Control.KL;
 import Game.Control.ML;
 import Game.PongGame.PongGame;
@@ -96,6 +99,20 @@ public class Window extends JPanel implements Runnable {
             }
             case PONG_GAME_OVER -> {
                 currentScene = new PongOver(key);
+            }
+            case CARO_MENU -> {
+                currentScene = new CaroMenu(key);
+                Main.frame.setSize(Constant.MAIN_MENU_WIDTH, Constant.MAIN_MENU_HEIGHT);
+                this.setPreferredSize(new Dimension(Constant.CARO_MENU_SIZE, Constant.CARO_MENU_SIZE));
+                this.revalidate();
+                Main.frame.pack();
+                Main.frame.setLocationRelativeTo(null);
+            }
+            case CARO_GAME -> {
+                currentScene = new CaroGame(mouse);
+            }
+            case CARO_END_GAME -> {
+                currentScene = new CaroEnd(key);
             }
         }
 
