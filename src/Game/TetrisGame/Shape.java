@@ -14,6 +14,7 @@ public class Shape {
     private boolean deactivating;
     private int deactivateCount = 0;
     private int direction = 1;
+    private int velocity = 30, velocityCount = 0;
 
     public boolean up,left,right,down;
 
@@ -99,6 +100,7 @@ public class Shape {
         }
     }
     public void update(){
+        velocityCount++;
         if(deactivating){
             deactivating();
         }
@@ -144,12 +146,16 @@ public class Shape {
             deactivating = true;
         }else{
             dropCounter++;
-            if(dropCounter == 30){
+            if(dropCounter == velocity){
                 for(Block block : blocks){
                     block.y += Constant.TETRIS_CELL_SIZE;
                 }
                 dropCounter=0;
             }
+        }
+        if(velocityCount==1800){
+            velocityCount=0;
+            velocity -= 1;
         }
     }
     public void draw(Graphics g){

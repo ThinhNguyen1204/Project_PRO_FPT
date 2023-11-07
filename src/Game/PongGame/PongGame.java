@@ -20,6 +20,7 @@ public class PongGame extends Scene {
     private int second , minutes;
     private int count;
     private int chance;
+    private int velocityCount = 0 ;
     private File dataFile  = new File("data/pong.txt");
     public PongGame(KL key) {
         this.key = key;
@@ -34,6 +35,7 @@ public class PongGame extends Scene {
 
     public void update(){
         count++;
+        velocityCount++;
         if(key.isKeyPressed(KeyEvent.VK_D)){
             if(playerPaddle.x+Constant.PONG_PADDLE_WIDTH+20 <= Constant.PONG_MENU_WIDTH){
                 playerPaddle.x+=20;
@@ -61,6 +63,10 @@ public class PongGame extends Scene {
         if(chance==0){
             saveHighestScore();
             Window.getWindow().changeState(State.PONG_GAME_OVER);
+        }
+        if(velocityCount == 1800){
+            ball.dx*=2;
+            ball.dy*=2;
         }
     }
 
