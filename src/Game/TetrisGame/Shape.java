@@ -155,7 +155,7 @@ public class Shape {
         }
         if(velocityCount==1800){
             velocityCount=0;
-            velocity -= 1;
+            velocity -= 5;
         }
     }
     public void draw(Graphics g){
