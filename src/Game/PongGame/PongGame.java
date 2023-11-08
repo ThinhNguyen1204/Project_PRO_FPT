@@ -21,7 +21,7 @@ public class PongGame extends Scene {
     private int count;
     private int chance;
     private int velocityCount = 0 ;
-    private File dataFile  = new File("data/pong.txt");
+    private File dataFile;
     public PongGame(KL key) {
         this.key = key;
         ball = new Ball(500,300, 4,4);
@@ -31,6 +31,7 @@ public class PongGame extends Scene {
         minutes = 0;
         count = 0;
         chance = 3;
+        dataFile  = new File("data/pong.txt");
     }
 
     public void update(){
@@ -75,15 +76,18 @@ public class PongGame extends Scene {
         String token[];
         int highestMinutes,highestSecond;
         try{
-            FileWriter writer = new FileWriter(dataFile);
             Scanner sc  = new Scanner(dataFile);
             if(dataFile.length()==0){
+                FileWriter writer = new FileWriter(dataFile);
                 String n = String.format("%d %d",minutes,second);
                 writer.write(n);
+                writer.flush();
+                writer.close();
             }else{
                 String line = sc.nextLine();
                 line = line.trim();
                 token = line.split(" ");
+                FileWriter writer = new FileWriter(dataFile);
                 if(Integer.parseInt(token[0]) < minutes){
                     highestMinutes = minutes;
                     highestSecond = second;
@@ -100,12 +104,11 @@ public class PongGame extends Scene {
                     }
                 }
                 String n = String.format("%d %d",highestMinutes,highestSecond);
-                writer.write("");
                 writer.write(n);
+                writer.flush();
+                writer.close();
             }
             sc.close();
-            writer.flush();
-            writer.close();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -8,12 +8,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Scanner;
 
 public class SnakeOver extends Scene {
     private ML mouse;
     private BufferedImage over, retry,retryPressed,exit,exitPressed;
     private BufferedImage currentRetry,currentExit;
     private RectImage retryRect, exitRect;
+    private File dataFile = new File("data/snake.txt");
+    private int highestScore;
     public SnakeOver(ML mouse) {
         this.mouse = mouse;
         try {
@@ -27,8 +30,9 @@ public class SnakeOver extends Scene {
         }
         currentExit = exit;
         currentRetry = retry;
-        retryRect = new RectImage(300,310, 200,100);
-        exitRect = new RectImage(325,440, 150,75);
+        retryRect = new RectImage(300,370, 200,100);
+        exitRect = new RectImage(325,500, 150,75);
+        readScore();
     }
 
     @Override
@@ -56,12 +60,29 @@ public class SnakeOver extends Scene {
         }
     }
 
+    public void readScore(){
+        try{
+            Scanner sc = new Scanner(dataFile);
+            String line = sc.nextLine();
+            line = line.trim();
+            highestScore = Integer.parseInt(line);
+            sc.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void draw(Graphics g) {
         g.setColor(new Color(147, 49, 71));
         g.fillRect(0,0, Constant.SNAKE_MENU_WIDTH,Constant.SNAKE_MENU_HEIGHT);
         g.drawImage(over,225,30, 350,250,null);
-        g.drawImage(currentRetry,300,310, 200,100,null);
-        g.drawImage(currentExit,325,440, 150,75,null);
+        g.setFont(new Font("Pixel AE",Font.BOLD,50));
+        g.setColor(Color.white);
+        FontMetrics metrics = g.getFontMetrics();
+        String printHighestScore = String.format("Your highest score is %d",highestScore);
+        g.drawString(printHighestScore,(Constant.SNAKE_MENU_WIDTH-metrics.stringWidth(printHighestScore))/2,350);
+        g.drawImage(currentRetry,300,370, 200,100,null);
+        g.drawImage(currentExit,325,500, 150,75,null);
     }
 }

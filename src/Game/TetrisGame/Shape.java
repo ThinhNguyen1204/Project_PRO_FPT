@@ -14,7 +14,7 @@ public class Shape {
     private boolean deactivating;
     private int deactivateCount = 0;
     private int direction = 1;
-    private int velocity = 30, velocityCount = 0;
+    public static int velocity = 30, velocityCount = 0;
 
     public boolean up,left,right,down;
 
@@ -136,7 +136,7 @@ public class Shape {
             down = false;
             if(!bottomCollision){
                 TetrisGame.score += 2;
-                for (Block block : blocks){
+                for (Block block : blocks){ 
                     block.y += Constant.TETRIS_CELL_SIZE;
                 }
                 dropCounter=0;

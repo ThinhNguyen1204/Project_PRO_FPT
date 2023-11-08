@@ -11,14 +11,15 @@ import java.util.Random;
 public class Food {
     int x,y;
     private  Snake snake;
-    int foodEaten=-1;
-    String score;
+    public   int foodEaten;
+    public static String score;
     BufferedImage scoreImage;
     BufferedImage foodImage;
     private final Random rand = new Random();
 
     public Food(Snake snake){
         this.snake = snake;
+        foodEaten=-1;
         try {
             scoreImage = ImageIO.read(new File("assets/Score.png"));
             foodImage = ImageIO.read(new File("assets/food.png"));

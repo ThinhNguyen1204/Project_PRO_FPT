@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
 
 public class Snake {
     public final int[] x = new  int[Constant.SNAKE_ROWS*Constant.SNAKE_COLS];
@@ -16,6 +18,7 @@ public class Snake {
     private SnakeDirection direction = SnakeDirection.RIGHT;
     private BufferedImage headUp,headDown,headLeft,headRight, bodyImage;
     private BufferedImage currentHead;
+    private File dataFile = new File("data/snake.txt");
 
     public Snake(int length, int startX,int startY) {
         this.length=length;
@@ -36,9 +39,6 @@ public class Snake {
     }
 
     public void update(){
-        if(checkCollision()){
-            Window.getWindow().changeState(State.SNAKE_GAME_OVER);
-        }
         for (int i = length; i > 0 ; i--) {
             x[i] = x[i-1];
             y[i] = y[i-1];
@@ -52,6 +52,43 @@ public class Snake {
 
             case DOWN -> y[0] = y[0] + Constant.SNAKE_CELL_SIZE;
         }
+        if(checkCollision()){
+            saveHighestScore();
+            Window.getWindow().changeState(State.SNAKE_GAME_OVER);
+        }
+    }
+
+    public void saveHighestScore(){
+        try{
+            Scanner sc  = new Scanner(dataFile);
+            if(dataFile.length()==0){
+                FileWriter writer = new FileWriter("data/snake.txt");
+                String n = Food.score;
+                writer.write(n);
+                writer.flush();
+                writer.close();
+            }else {
+                String line = sc.nextLine();
+                line = line.trim();
+                int highestScore = Integer.parseInt(line);
+                int newScore = Integer.parseInt(Food.score);
+                FileWriter writer = new FileWriter("data/snake.txt");
+                if(newScore>highestScore){
+                    String n = Integer.toString(newScore);
+                    writer.write(n);
+                }else {
+                    String n = Integer.toString(highestScore);
+                    writer.write(n);
+                }
+                writer.flush();
+                writer.close();
+            }
+            sc.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void changeSnakeDirection(SnakeDirection newSnakeDirection){

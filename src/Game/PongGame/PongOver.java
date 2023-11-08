@@ -53,7 +53,6 @@ public class PongOver extends Scene {
             token = line.split(" ");
             highestMinutes = Integer.parseInt(token[0]);
             highestSecond = Integer.parseInt(token[1]);
-
             sc.close();
         }catch (Exception e){
             e.printStackTrace();
